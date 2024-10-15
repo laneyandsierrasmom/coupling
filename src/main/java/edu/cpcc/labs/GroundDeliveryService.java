@@ -4,7 +4,11 @@ public class GroundDeliveryService implements DeliveryService {
 
 	@Override
 	public void deliver(PostalMail postalMail) {
-		System.out.println("Stamp value: " + postalMail.getStamp().name());
-		System.out.println("I deliver postal mail by ground/land.");
+		if (postalMail.getStamp() == Stamp.FIRST_CLASS) {
+			System.out.println("I can deliver this first class postal mail by ground.");
+		}
+		else {
+			System.out.printf("I cannot deliver this %s postal mail by ground.\n", postalMail.getStamp().name());
+		}
 	}
 }

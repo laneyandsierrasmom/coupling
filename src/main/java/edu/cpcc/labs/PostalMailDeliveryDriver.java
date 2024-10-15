@@ -8,23 +8,21 @@ public class PostalMailDeliveryDriver {
 		
 		// Tight coupling model...
 		AirDeliveryService airDeliveryService = new AirDeliveryService();
-		// Postal Mail Dispatcher has a dependency on the Air Delivery Service
-		// We are injecting that dependency into the dispatcher		
+		// You can only inject the Air Delivery Service into this dispatcher.
 		TightlyCoupledPostalMailDispatcher deliverer = new TightlyCoupledPostalMailDispatcher(airDeliveryService);
 		// dispatch postal mail...
 		deliverer.dispatch(postMail);
 		
 		
-		// Lossely coupling model...
-		GroundDeliveryService groundDeliveryService = new GroundDeliveryService();
+		// Loose coupling model...
+		// You may inject different types of air delivery service into this dispatcher.s
 		LooselyCoupledPostalMailDispatcher lDeliverer = new LooselyCoupledPostalMailDispatcher();
-		if(postMail.getStamp() == Stamp.EXPRESS) {
-			lDeliverer.setDeliveryService(airDeliveryService);
-		}else if (postMail.getStamp() == Stamp.FIRST_CLASS) {
-			lDeliverer.setDeliveryService(groundDeliveryService);
-		}
+		lDeliverer.setDeliveryService(airDeliveryService);
 		lDeliverer.dispatch(postMail);
 		
+		GroundDeliveryService groundDeliveryService = new GroundDeliveryService();
+		lDeliverer.setDeliveryService(groundDeliveryService);
+		lDeliverer.dispatch(postMail);		
 		
 	}
 

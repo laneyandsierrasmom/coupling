@@ -4,13 +4,12 @@ public class AirDeliveryService implements DeliveryService {
 
 	@Override
 	public void deliver(PostalMail postalMail) {
-		System.out.println("Stamp value: " + postalMail.getStamp().name());
-		System.out.println("I deliver postal mail by air.");
-	}
-	
-
-	public String whoAmI() {
-		return this.getClass().getName();
+		if (postalMail.getStamp() == Stamp.OVERNIGHT) {
+			System.out.println("I can deliver this overnight postal mail by air.");
+		}
+		else {
+			System.out.printf("I cannot deliver this %s postal mail by air.\n", postalMail.getStamp().name());
+		}
 	}
 
 }
