@@ -22,7 +22,9 @@ public class TightlyCoupledPostalMailDispatcher {
 		this.airDeliveryService = airDelivery;
 	}
 
+	// dispatch
 	public void dispatch(PostalMail postMail) {
+		// uses the air delivery service to dispatch mail..
 		this.airDeliveryService.deliver(postMail);
 	}
 
