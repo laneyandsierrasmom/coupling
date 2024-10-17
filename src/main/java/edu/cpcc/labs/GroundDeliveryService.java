@@ -3,7 +3,7 @@ package edu.cpcc.labs;
 public class GroundDeliveryService implements DeliveryService {
 
 	@Override
-	public void deliver(PostalMail postalMail) {
+	public void deliver(final PostalMail postalMail) {
 		if (postalMail.getStamp() == Stamp.FIRST_CLASS) {
 			System.out.println("I can deliver this first class postal mail by ground.");
 		}
